@@ -48,7 +48,7 @@ public class Sales
         int exceedCount=0;
         for (int i=0; i<sales.length; i++){
             if (sales[i]>value){
-                System.out.println("\n Salesman "+(i+1)+" exceeded the value "+ value+" with the sale: "+sales[i]);
+                System.out.println("\nSalesman "+(i+1)+" exceeded the value "+ value+" with the sale: "+sales[i]);
                 exceedCount+=1;
             }
         }
