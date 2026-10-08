@@ -1,5 +1,7 @@
 package student;
 
+import java.util.Locale;
+
 public class Student extends Person {
     private String cne;
     private Major major;
@@ -9,9 +11,10 @@ public class Student extends Person {
         this.major = null;
     }
     public Student(String nom, String prenom, String telephone, String email, String cne, Major major) {
-       super(nom, prenom, telephone, email);
+       super(prenom, nom, telephone, email);
        this.cne= cne;
        this.major= major;
+       if (major != null) major.addStudent(this);
 
     }
     //The default major is computer science, so we will create it.
@@ -20,6 +23,7 @@ public class Student extends Person {
         super(nom, prenom, telephone, email);
         this.major=computerScience ;
         this.cne=cne;
+        if (major != null) major.addStudent(this);
     }
 
 //    // Getters
@@ -37,5 +41,10 @@ public class Student extends Person {
     public String toString(){
         return super.toString()+" Student {cne= "+ cne+" major="+(major==null?"none": major.getCode())+"}";
     }
+    public String getFullNameFormatted(){
+        return String.format("%s, %s",lastName.toUpperCase(), firstName.substring(0,1).toUpperCase());
+    }
+
+
 }
 

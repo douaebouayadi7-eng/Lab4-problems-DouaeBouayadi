@@ -27,7 +27,6 @@ public class Person {
     }
     public String toString(){
         return "Person{id="+id+" firstName="+firstName+" lastName="+lastName+" phone="+ phone+" email= "+email+"}";
-
     }
 
 }

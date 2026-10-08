@@ -25,11 +25,13 @@ public class Major {
 
     // Method to add a student
     public void addStudent(Student s) {
-        if (studentCount==50){System.out.println("No syudent can be added to this major");}
-        students[studentCount]= s;
-        studentCount++;
+        if (studentCount == 50) {
+            System.out.println("No student can be added to this major");
+        } else {
+            students[studentCount] = s;
+            studentCount++;
+        }
     }
-
    // Getters
     public int getId(){ return id;}
     public String getName(){return name;}
@@ -52,9 +54,48 @@ public class Major {
 
 
 //    // Display all students in the major
-//    public void displayStudents() {
-//
-//    }
-//
-//
+    public void displayStudents() {
+        System.out.println("The list of students in the " + name + " major is:");
+        for (int i = 0; i < studentCount; i++) {
+            Student s = students[i];
+            System.out.println((i + 1) + ". " + s.getCne() + " " + s.lastName+ " " + s.firstName);
+        }
+    }
+    public Student findStudentByCNE(String cne) {
+        for (int i = 0; i < studentCount; i++) {
+            if (students[i].getCne().equals(cne)) {
+                return students[i];
+            }
+        }
+        return null;
+    }
+    public boolean removeStudent(String cne) {
+        Student s = findStudentByCNE(cne);
+        if (s == null) {
+            return false;
+        }
+        for (int i = 0; i < studentCount; i++) {
+            if (students[i] == s) {
+                for (int j = i; j < studentCount - 1; j++) {
+                    students[j] = students[j + 1];
+                }
+                students[studentCount - 1] = null;   // clear the leftover last slot
+                studentCount--;
+                return true;
+            }
+        }
+        return false;
+    }
+    public double getOccupancyRate(){
+        return ((double)studentCount/50)*100;
+    }
+    public String getStudentListAsString(){
+        StringBuilder sb= new StringBuilder();
+        for (int i=0; i<studentCount; i++){
+            Student s= students[i];
+            sb.append(i+1).append(".").append(s.getCne()).append(" ").append(s.getFullNameFormatted()).append("\n");
+        }
+        return sb.toString();
+    }
 }
+
